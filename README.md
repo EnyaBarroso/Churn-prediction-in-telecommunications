@@ -83,3 +83,27 @@ Los resultados obtenidos fueron:
 - **Falsos Negativos (147):** Clientes que cancelarán pero el modelo no detectó (los más críticos).
 
 - **Verdaderos Positivos (629):** Correctamente identificados como churn.
+
+
+📈 **Curva ROC (AUC = 0.88)**
+
+🎯 **Interpretación de la Curva ROC**
+
+- **Punto Óptimo**:  
+
+    Se acerca al ideal (área bajo curva = 88%)
+
+
+## 📌 Conclusiones Finales
+
+A lo largo del análisis realizado para la empresa Interconnect, se identificaron factores clave que influyen en la cancelación de clientes (churn). Entre los hallazgos más relevantes se destacan los siguientes:
+
+- Los clientes con contratos mes a mes son significativamente más propensos a cancelar el servicio, mientras que aquellos con contratos de uno o dos años muestran una mayor retención. Esto sugiere que incentivar contratos a largo plazo puede reducir la tasa de churn.
+
+- El método de pago también se relaciona con la cancelación: los usuarios que pagan mediante cheque electrónico cancelan con más frecuencia que aquellos que utilizan métodos automáticos como tarjeta de crédito o transferencia bancaria.
+
+- Los clientes que no cuentan con servicios de seguridad online ni con soporte técnico tienden a cancelar más. Esto indica que los servicios adicionales tienen un impacto positivo en la fidelización.
+
+- Curiosamente, el servicio de internet por fibra óptica, aunque más moderno, presenta una tasa de cancelación más alta que el DSL. Esto podría estar relacionado con expectativas no cumplidas o problemas en el servicio.
+
+En conjunto, estos resultados ofrecen una base sólida para que el equipo de marketing de Interconnect diseñe estrategias de retención más efectivas, como ofrecer promociones a quienes usan pago electrónico, fomentar contratos de largo plazo, o incluir servicios de soporte técnico y seguridad online en los paquetes básicos.
