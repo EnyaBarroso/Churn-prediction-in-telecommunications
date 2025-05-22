@@ -37,3 +37,49 @@ Se realizo:
 - Preprocesamiento de datos
 - Análisis exploratorio de datos
 - Entrenamiento y Evaluación del modelo: En este proyecto se implemento el modelo 'RandomForestClassifier'
+
+### Resultados
+
+Los resultados obtenidos fueron:
+
+📊 **Classification Report**
+
+| Métrica       | Clase 0 (No Churn) | Clase 1 (Churn) | Interpretación |
+|---------------|--------------------|-----------------|----------------|
+| **Precision** | 0.84               | 0.75            | - De los predichos como "No Churn", el 84% eran correctos.<br>- De los predichos como "Churn", el 75% realmente cancelaron. |
+| **Recall**    | 0.79               | 0.81            | - Detectó el 79% de los clientes que NO cancelaron.<br>- Identificó el 81% de los clientes que SÍ cancelaron. |
+| **F1-Score**  | 0.81               | 0.78            | Balance entre precisión y recall (ideal >0.8) |
+
+🔹 **Accuracy**: 80% (bueno, pero no lo uses como métrica principal por el desbalance inicial).  
+🔹 **Macro Avg**: Promedio no ponderado (importante si ambas clases son igualmente relevantes).
+
+
+📈 **AUC-ROC: 0.8812**
+
+- **Rango excelente:** 0.88 está muy por encima del mínimo objetivo de 0.85.
+
+- **Interpretación:**
+
+    ○ 1.0 = Predicción perfecta
+
+    ○ 0.88 = Excelente capacidad para distinguir entre clientes que cancelarán o no.
+
+    ○ 0.5 = Aleatorio
+
+👉 **El modelo tiene un 88% de probabilidad de clasificar correctamente un par aleatorio (cliente que cancela vs uno que no).**
+
+
+📌 **Matriz de Confusión**
+
+|      | Predicción: 0 | Predicción: 1 | Total |
+|---------------|--------------------|-----------------|----------------|
+| **Realidad: 0** | 762              | 208           | 970     |
+| **Realidad: 1**    | 147             | 629          | 776   |
+
+- **Verdaderos Negativos (762):** Correctamente identificados como no churn.
+
+- **Falsos Positivos (208):** Clientes leales marcados como riesgo (pueden recibir promociones innecesarias).
+
+- **Falsos Negativos (147):** Clientes que cancelarán pero el modelo no detectó (los más críticos).
+
+- **Verdaderos Positivos (629):** Correctamente identificados como churn.
