@@ -1,109 +1,108 @@
-# Prediccion-de-Churn-en-Telecomunicaciones
-Al operador de telecomunicaciones Interconnect le gustaría poder pronosticar su tasa de cancelación de clientes. Si se descubre que un usuario o usuaria planea irse, se le ofrecerán códigos promocionales y opciones de planes especiales.
+# Churn Prediction in Telecommunications
+Telecommunications operator Interconnect would like to be able to predict its customer churn rate. If a customer is found to be planning to leave, they will be offered promotional codes and special plan options.
 
-### Servicios de Interconnect
+### Interconnect Services
 
-Interconnect proporciona principalmente dos tipos de servicios:
+Interconnect primarily provides two types of services:
 
-1. Comunicación por teléfono fijo. El teléfono se puede conectar a varias líneas de manera simultánea.
+1. Landline communication. The phone can be connected to multiple lines simultaneously.
 
-2. Internet. La red se puede configurar a través de una línea telefónica (DSL, *línea de abonado digital*) o a través de un cable de fibra óptica.
+2. Internet. The network can be set up over a telephone line (DSL, Digital Subscriber Line) or a fiber optic cable.
 
-Algunos otros servicios que ofrece la empresa incluyen:
+Some other services the company offers include:
 
-- Seguridad en Internet: software antivirus (*ProtecciónDeDispositivo*) y un bloqueador de sitios web maliciosos (*SeguridadEnLínea*).
-- Una línea de soporte técnico (*SoporteTécnico*).
-- Almacenamiento de archivos en la nube y backup de datos (*BackupOnline*).
-- Streaming de TV (*StreamingTV*) y directorio de películas (*StreamingPelículas*)
+- Internet security: antivirus software (*DeviceProtection*) and a malicious website blocker (*OnlineSecurity*).
+- A technical support line (*TechSupport*).
+- Cloud file storage and data backup (*OnlineBackup*).
+- TV streaming (*StreamingTV*) and movie directory (*StreamingMovies*).
+  
+Customers can choose between monthly payments or a one- or two-year contract. They can use various payment methods and receive an electronic invoice after each transaction.
 
-La clientela puede elegir entre un pago mensual o firmar un contrato de 1 o 2 años. Puede utilizar varios métodos de pago y recibir una factura electrónica después de una transacción.
+### Data Description
 
-### Descripción de los datos
+The data consists of files obtained from various sources:
 
-Los datos consisten en archivos obtenidos de diferentes fuentes:
+- `contract.csv` — contract information;
+- `personal.csv` — customer personal data;
+- `internet.csv` — information about internet services;
+- `phone.csv` — information about telephone services.
 
-- `contract.csv` — información del contrato;
-- `personal.csv` — datos personales del cliente;
-- `internet.csv` — información sobre los servicios de Internet;
-- `phone.csv` — información sobre los servicios telefónicos.
+In each file, the `customerID` column contains a unique code assigned to each customer. The contract information is valid as of February 1, 2020.
 
-En cada archivo, la columna `customerID` (ID de cliente) contiene un código único asignado a cada cliente. La información del contrato es válida a partir del 1 de febrero de 2020.
+### Steps to follow
 
-### Pasos a seguir
+The following were performed:
 
-Se realizo:
+- Data loading
+- Data preprocessing
+- Exploratory data analysis
+- Model training and evaluation: In this project, the 'RandomForestClassifier' model was implemented.
 
-- Carga de datos
-- Preprocesamiento de datos
-- Análisis exploratorio de datos
-- Entrenamiento y Evaluación del modelo: En este proyecto se implemento el modelo 'RandomForestClassifier'
+### Results
 
-### Resultados
-
-Los resultados obtenidos fueron:
+The results obtained were:
 
 📊 **Classification Report**
 
-| Métrica       | Clase 0 (No Churn) | Clase 1 (Churn) | Interpretación |
-|---------------|--------------------|-----------------|----------------|
-| **Precision** | 0.84               | 0.75            | - De los predichos como "No Churn", el 84% eran correctos.<br>- De los predichos como "Churn", el 75% realmente cancelaron. |
-| **Recall**    | 0.79               | 0.81            | - Detectó el 79% de los clientes que NO cancelaron.<br>- Identificó el 81% de los clientes que SÍ cancelaron. |
-| **F1-Score**  | 0.81               | 0.78            | Balance entre precisión y recall (ideal >0.8) |
+| Metric | Class 0 (No Churn) | Class 1 (Churn) | Interpretation |
+|---------------|--------------------|------------------|----------------|
+| **Precision** | 0.84 | 0.75 | - Of those predicted as "No Churn", 84% were correct.<br>- Of those predicted as "Churn", 75% actually canceled. |
+| **Recall** | 0.79 | 0.81 | - Detected 79% of customers who DID NOT cancel.<br>- Identified 81% of customers who DID cancel. |
+| **F1-Score** | 0.81 | 0.78 | Balance between precision and recall (ideal >0.8) |
 
-🔹 **Accuracy**: 80% (bueno, pero no lo uses como métrica principal por el desbalance inicial).  
-🔹 **Macro Avg**: Promedio no ponderado (importante si ambas clases son igualmente relevantes).
+🔹 **Accuracy**: 80% (good, but don't use it as your primary metric due to the initial imbalance).
+🔹 **Macro Avg**: Unweighted average (important if both classes are equally relevant).
 
 
 📈 **AUC-ROC: 0.8812**
 
-- **Rango excelente:** 0.88 está muy por encima del mínimo objetivo de 0.85.
+- **Excellent Range:** 0.88 is well above the target minimum of 0.85.
 
-- **Interpretación:**
+- **Interpretation:**
 
-    ○ 1.0 = Predicción perfecta
+○ 1.0 = Perfect prediction
 
-    ○ 0.88 = Excelente capacidad para distinguir entre clientes que cancelarán o no.
+○ 0.88 = Excellent ability to distinguish between customers who will and will not cancel.
 
-    ○ 0.5 = Aleatorio
+○ 0.5 = Random
 
-👉 **El modelo tiene un 88% de probabilidad de clasificar correctamente un par aleatorio (cliente que cancela vs uno que no).**
+👉 **The model has an 88% chance of correctly classifying a random pair (customer who cancels vs. one who doesn't).**
 
+📌 **Confusion Matrix**
 
-📌 **Matriz de Confusión**
-
-|      | Predicción: 0 | Predicción: 1 | Total |
+| | Prediction: 0 | Prediction: 1 | Total |
 |---------------|--------------------|-----------------|----------------|
-| **Realidad: 0** | 762              | 208           | 970     |
-| **Realidad: 1**    | 147             | 629          | 776   |
+| **Reality: 0** | 762 | 208 | 970 |
+| **Reality: 1** | 147 | 629 | 776 |
 
-- **Verdaderos Negativos (762):** Correctamente identificados como no churn.
+- **True Negatives (762):** Correctly identified as non-churn.
 
-- **Falsos Positivos (208):** Clientes leales marcados como riesgo (pueden recibir promociones innecesarias).
+- **False Positives (208):** Loyal customers flagged as risk (may receive unnecessary promotions).
 
-- **Falsos Negativos (147):** Clientes que cancelarán pero el modelo no detectó (los más críticos).
+- **False Negatives (147):** Customers who will cancel but were not detected by the model (the most critical).
 
-- **Verdaderos Positivos (629):** Correctamente identificados como churn.
-
-
-📈 **Curva ROC (AUC = 0.88)**
-
-🎯 **Interpretación de la Curva ROC**
-
-- **Punto Óptimo**:  
-
-    Se acerca al ideal (área bajo curva = 88%)
+- **True Positives (629):** Correctly identified as churn.
 
 
-## 📌 Conclusiones Finales
+📈 **ROC Curve (AUC = 0.88)**
 
-A lo largo del análisis realizado para la empresa Interconnect, se identificaron factores clave que influyen en la cancelación de clientes (churn). Entre los hallazgos más relevantes se destacan los siguientes:
+🎯 **Interpretation of the ROC Curve**
 
-- Los clientes con contratos mes a mes son significativamente más propensos a cancelar el servicio, mientras que aquellos con contratos de uno o dos años muestran una mayor retención. Esto sugiere que incentivar contratos a largo plazo puede reducir la tasa de churn.
+- **Optimum Point**: 
 
-- El método de pago también se relaciona con la cancelación: los usuarios que pagan mediante cheque electrónico cancelan con más frecuencia que aquellos que utilizan métodos automáticos como tarjeta de crédito o transferencia bancaria.
+Close to the ideal (area under the curve = 88%)
 
-- Los clientes que no cuentan con servicios de seguridad online ni con soporte técnico tienden a cancelar más. Esto indica que los servicios adicionales tienen un impacto positivo en la fidelización.
 
-- Curiosamente, el servicio de internet por fibra óptica, aunque más moderno, presenta una tasa de cancelación más alta que el DSL. Esto podría estar relacionado con expectativas no cumplidas o problemas en el servicio.
+## 📌 Final Conclusions
 
-En conjunto, estos resultados ofrecen una base sólida para que el equipo de marketing de Interconnect diseñe estrategias de retención más efectivas, como ofrecer promociones a quienes usan pago electrónico, fomentar contratos de largo plazo, o incluir servicios de soporte técnico y seguridad online en los paquetes básicos.
+Throughout the analysis conducted for Interconnect, key factors influencing customer churn were identified. Among the most relevant findings are the following:
+
+- Customers with month-to-month contracts are significantly more likely to cancel their service, while those with one- or two-year contracts show higher retention. This suggests that incentivizing long-term contracts can reduce the churn rate.
+
+- Payment method is also related to churn: users who pay by e-check cancel more frequently than those who use automatic methods such as credit card or bank transfer.
+
+- Customers who lack online security services or technical support tend to cancel more. This indicates that additional services have a positive impact on loyalty.
+
+- Interestingly, fiber optic internet service, although more modern, has a higher churn rate than DSL. This could be related to unmet expectations or service issues.
+
+Taken together, these results provide a solid foundation for Interconnect's marketing team to design more effective retention strategies, such as offering promotions to those who use electronic payments, encouraging long-term contracts, or including technical support and online security services in basic packages.
