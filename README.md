@@ -1,5 +1,3 @@
-Telecommunications operator Interconnect would like to be able to predict its customer churn rate. If a customer is found to be planning to leave, they will be offered promotional codes and special plan options.
-
 ### Interconnect Services
 
 Interconnect primarily provides two types of services:
